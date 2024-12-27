@@ -56,10 +56,10 @@
 
     lucid = await Lucid(
       new Blockfrost(
-        'https://cardano-preprod.blockfrost.io/api/v0',
+        'https://cardano-preview.blockfrost.io/api/v0',
         blockfrostAPIKey
       ),
-      'Preprod'
+      'Preview'
     );
 
     const cache = localStorage.getItem('cache');
@@ -99,7 +99,7 @@
     waitingLockTx = true;
 
     try {
-      const lovelace = Number(giftADA) * 1000000;
+      const lovelace = Number(giftADA) * 1_000000;
 
       const assetName = `${parameterizedContracts!.policyId}${fromText(
         tokenName
@@ -148,7 +148,8 @@
           lockTxHash = txHash;
         }
       }, 3000);
-    } catch {
+    } catch (error) {
+      console.error(error);
       waitingLockTx = false;
     }
   }
@@ -267,7 +268,7 @@
           <a
             class="mb-2"
             target="_blank"
-            href={`https://preprod.cardanoscan.io/transaction/${lockTxHash}`}
+            href={`https://preview.cexplorer.io/tx/${lockTxHash}`}
           >
             {lockTxHash}
           </a>
@@ -289,7 +290,7 @@
           <a
             class="mb-2"
             target="_blank"
-            href={`https://preprod.cardanoscan.io/transaction/${unlockTxHash}`}
+            href={`https://preview.cexplorer.io/tx/${unlockTxHash}`}
           >
             {unlockTxHash}
           </a>
