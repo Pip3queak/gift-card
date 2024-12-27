@@ -63,7 +63,7 @@ export function applyParams(
     script: giftCard
   });
 
-  const lockAddress = validatorToAddress('Preprod', {
+  const lockAddress = validatorToAddress('Preview', {
     type: 'PlutusV3',
     script: giftCard
   });
